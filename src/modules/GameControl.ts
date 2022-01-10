@@ -54,8 +54,13 @@ class GameControl {
         break;
     }
 
-    this.snake.X = X;
-    this.snake.Y = Y;
+    try {
+      this.snake.X = X;
+      this.snake.Y = Y;
+    } catch (error: any) {
+      alert(error.message);
+      this.isLive = false;
+    }
 
     this.isLive &&
       setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
