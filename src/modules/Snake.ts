@@ -23,7 +23,7 @@ class Snake {
   }
 
   set Y(value: number) {
-    this.head.style.left = value + 'px';
+    this.head.style.top = value + 'px';
   }
 
   addBody() {

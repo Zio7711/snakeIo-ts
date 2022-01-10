@@ -23,6 +23,39 @@ class GameControl {
 
   keydownHandler(event: KeyboardEvent) {
     this.direction = event.key;
+    this.run();
+  }
+
+  run() {
+    // 获取蛇现在坐标
+    let X = this.snake.X;
+    let Y = this.snake.Y;
+
+    // 根据按键方向来修改X值和Y值
+    switch (this.direction) {
+      case 'ArrowUp':
+        // 向上移动 top 减少
+        Y -= 10;
+        break;
+
+      case 'ArrowDown':
+        // 向下移动 top 增加
+        Y += 10;
+        break;
+
+      case 'ArrowLeft':
+        // 向左移动 left 减少
+        X -= 10;
+        break;
+
+      case 'ArrowRight':
+        // 向右移动 left 增加
+        X += 10;
+        break;
+    }
+
+    this.snake.X = X;
+    this.snake.Y = Y;
   }
 }
 
