@@ -54,16 +54,29 @@ class GameControl {
         break;
     }
 
+    this.checkEat(X, Y);
+
     try {
       this.snake.X = X;
       this.snake.Y = Y;
     } catch (error: any) {
-      alert(error.message);
+      alert(error.message + 'Game Over');
       this.isLive = false;
     }
 
     this.isLive &&
       setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
+  }
+
+  checkEat(X: number, Y: number) {
+    if (X === this.food.X && Y === this.food.Y) {
+      // 食物的位置要进行重置
+      this.food.change();
+      // 分数增加
+      this.scorePanel.addScore();
+      // 蛇要增加一节
+      this.snake.addBody();
+    }
   }
 }
 
