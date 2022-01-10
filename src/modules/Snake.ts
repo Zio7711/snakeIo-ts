@@ -21,11 +21,6 @@ class Snake {
   set X(value: number) {
     if (this.X === value) return;
 
-    if (value < 0 || value > 290) {
-      // 进入判断说明蛇撞墙了
-      throw new Error('蛇撞墙了！');
-    }
-
     // 修改x时，是在修改水平坐标，蛇在左右移动，蛇在向左移动时，不能向右掉头，反之亦然
     if (
       this.bodies[1] &&
@@ -40,6 +35,10 @@ class Snake {
         value = this.X + 10;
       }
     }
+    if (value < 0 || value > 290) {
+      // 进入判断说明蛇撞墙了
+      throw new Error('蛇撞墙了！');
+    }
 
     this.moveBody();
     this.head.style.left = value + 'px';
@@ -48,7 +47,6 @@ class Snake {
 
   set Y(value: number) {
     if (this.Y === value) return;
-
     if (value < 0 || value > 290) {
       // 进入判断说明蛇撞墙了，抛出一个异常
       throw new Error('蛇撞墙了！');
