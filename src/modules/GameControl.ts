@@ -19,11 +19,11 @@ class GameControl {
 
   init() {
     document.addEventListener('keydown', this.keydownHandler.bind(this));
+    this.run();
   }
 
   keydownHandler(event: KeyboardEvent) {
     this.direction = event.key;
-    this.run();
   }
 
   run() {
@@ -56,6 +56,9 @@ class GameControl {
 
     this.snake.X = X;
     this.snake.Y = Y;
+
+    this.isLive &&
+      setTimeout(this.run.bind(this), 300 - (this.scorePanel.level - 1) * 30);
   }
 }
 
